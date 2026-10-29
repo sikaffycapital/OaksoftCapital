@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import SwapColumn from "../../components/Swap";
+import SkateSwapWidget from "../../components/SkateSwapWidget";
 import ChartSmart from "../../components/ChartSmart";
 import ExecutionFlowModal from "@/components/ExecutionFlowModal";
 
@@ -80,7 +81,7 @@ export default function Trade() {
   const [showExecutionModal, setShowExecutionModal] = useState(false);
 
   // --- NEW STATE FOR TABS (SWAP vs ONRAMP) ---
-  const [tradeMode, setTradeMode] = useState("SWAP"); // "SWAP" | "ONRAMP"
+  const [tradeMode, setTradeMode] = useState("SWAP"); // "SWAP" | "SKATE" | "ONRAMP"
 
 const handleSellTokenChange = useCallback((t) => {
   setSell({
@@ -269,6 +270,16 @@ const handleBuyTokenChange = useCallback((t) => {
                     SWAP
                   </button>
                   <button
+                    onClick={() => setTradeMode("SKATE")}
+                    className={`px-4 py-2 text-lg font-bold transition-colors ${
+                      tradeMode === "SKATE"
+                      ? "text-white border-b-2 border-blue-500"
+                      : "text-gray-500 hover:text-gray-300"
+                    }`}
+                  >
+                    CROSS-CHAIN
+                  </button>
+                  <button
                     onClick={() => setTradeMode("ONRAMP")}
                     className={`px-4 py-2 text-lg font-bold transition-colors ${
                       tradeMode === "ONRAMP" 
@@ -292,6 +303,12 @@ const handleBuyTokenChange = useCallback((t) => {
                 {tradeMode === "SWAP" ? (
                   // Case A: Show Swap
                   <SwapColumn
+                    onSellTokenChange={handleSellTokenChange}
+                    onBuyTokenChange={handleBuyTokenChange}
+                  />
+                ) : tradeMode === "SKATE" ? (
+                  // Case B: Skate AMM (one shared pool across chains)
+                  <SkateSwapWidget
                     onSellTokenChange={handleSellTokenChange}
                     onBuyTokenChange={handleBuyTokenChange}
                   />

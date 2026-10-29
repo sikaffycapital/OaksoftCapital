@@ -24,6 +24,7 @@
     "@reown/appkit-adapter-solana": "^1.8.15",
     "@reown/appkit-adapter-ton": "^1.8.15",
     "@reown/appkit-adapter-wagmi": "^1.8.15",
+    "@skate-org/skate-app-amm": "^3.7.2",
     "@solana/wallet-adapter-base": "^0.9.27",
     "@solana/wallet-adapter-react": "^0.15.39",
     "@tanstack/react-query": "^5.90.12",
