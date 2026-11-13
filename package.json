@@ -31,7 +31,7 @@
     "ethers": "^6.16.0",
     "firebase": "^12.5.0",
     "firebase-admin": "^13.6.0",
-    "next": "^16.0.7",
+    "next": "16.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-google-recaptcha": "^3.1.0",
@@ -43,7 +43,16 @@
     "@tailwindcss/postcss": "^4",
     "@types/multicoin-address-validator": "^0.5.3",
     "eslint": "^9",
-    "eslint-config-next": "^16.0.7",
+    "eslint-config-next": "16.4.6",
     "tailwindcss": "^4"
+  },
+  "overrides": {
+    "websocket-driver": "0.7.5",
+    "tar": "7.5.23",
+    "shell-quote": "1.12.0",
+    "protobufjs": "7.6.6",
+    "fast-xml-parser": "4.5.7",
+    "bitcoinjs-lib@6.1.7": "6.1.10",
+    "bitcoinjs-lib@7.0.0": "7.0.5"
   }
 }
