@@ -1,0 +1,49 @@
+{
+  "name": "oaksoft",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@bigmi/client": "^0.6.0",
+    "@bigmi/core": "^0.6.0",
+    "@bigmi/react": "^0.6.0",
+    "@halliday-sdk/payments": "^2.8.0",
+    "@lifi/sdk": "^3.12.14",
+    "@lifi/widget": "^3.33.1",
+    "@mysten/dapp-kit": "^0.19.5",
+    "@mysten/sui": "^1.43.0",
+    "@relayprotocol/relay-kit-hooks": "^2.0.6",
+    "@relayprotocol/relay-kit-ui": "^5.0.3",
+    "@reown/appkit": "^1.8.15",
+    "@reown/appkit-adapter-bitcoin": "^1.8.15",
+    "@reown/appkit-adapter-solana": "^1.8.15",
+    "@reown/appkit-adapter-ton": "^1.8.15",
+    "@reown/appkit-adapter-wagmi": "^1.8.15",
+    "@solana/wallet-adapter-base": "^0.9.27",
+    "@solana/wallet-adapter-react": "^0.15.39",
+    "@tanstack/react-query": "^5.90.12",
+    "@web3modal/wagmi": "^5.1.11",
+    "ethers": "^6.16.0",
+    "firebase": "^12.5.0",
+    "firebase-admin": "^13.6.0",
+    "next": "^16.0.7",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-google-recaptcha": "^3.1.0",
+    "viem": "^2.41.2",
+    "wagmi": "^2.19.5"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/multicoin-address-validator": "^0.5.3",
+    "eslint": "^9",
+    "eslint-config-next": "^16.0.7",
+    "tailwindcss": "^4"
+  }
+}
