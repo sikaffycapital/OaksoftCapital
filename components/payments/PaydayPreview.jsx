@@ -4,13 +4,13 @@ import { useMemo, useState } from "react";
 import { SAMPLE_RATES, SAMPLE_WALLET } from "@/lib/payments/sampleData";
 import { usd, number2 } from "@/components/payments/ui";
 
-const countries = ["Panama", "El Salvador", "Guatemala", "Honduras"];
+const countries = Object.keys(SAMPLE_RATES);
 const initialAmount = "500";
 const fieldClass = "w-full rounded-lg border border-white/15 bg-[#10151e] px-4 py-3 text-white outline-none transition-colors placeholder:text-white/30 hover:border-white/30 focus:border-[#a8dc55] focus:ring-2 focus:ring-[#a8dc55]/15";
 
 export default function PaydayPreview() {
   const [amount, setAmount] = useState(initialAmount);
-  const [country, setCountry] = useState("Panama");
+  const [country, setCountry] = useState(countries[0]);
   const [view, setView] = useState("employer");
   const rate = SAMPLE_RATES[country];
   const feeRate = SAMPLE_WALLET.sampleFeePct / 100;
