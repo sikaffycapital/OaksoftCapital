@@ -97,7 +97,7 @@ export default function LoansPage() {
                         Start
                       </div>
                       <div className="text-white font-['Gramatika_Trial', 'Helvetica', 'Arial', 'sans-serif'] font-normal tracking-[1.125px] text-[14px] leading-[16px] md:text-[17px] md:leading-[24px]">
-                        From $100
+                        With $100
                       </div>
                     </div>
                   </div>
