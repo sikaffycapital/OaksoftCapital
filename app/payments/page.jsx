@@ -8,7 +8,7 @@ import { cardClass } from "@/components/payments/ui";
 export const metadata = {
   title: "Payments | Oaksoft Capital",
   description:
-    "Payroll for remote teams in Latin America. Fund payroll in USD; each worker holds digital dollars (USDC on Stellar) and converts when they choose. Now onboarding pilot clients.",
+    "Dollar payroll for remote teams in markets exposed to currency risk. Fund payroll in USD; workers hold digital dollars and choose when to convert. Private pilot.",
 };
 
 const HIGHLIGHTS = [
@@ -28,7 +28,7 @@ const AUDIENCES = [
     icon: "/assets/hugeicons_blockchain-02.svg",
     title: "Nearshore and BPO teams",
     description:
-      "Pay agents and developers across Latin America without a wire per person.",
+      "Pay agents and developers across borders without a wire per person.",
   },
   {
     icon: "/assets/icons8_bank-card.svg",
@@ -65,10 +65,12 @@ const STEPS = [
 ];
 
 const CORRIDORS = [
-  { to: "Panama", currency: "US dollar", stage: "Launching first" },
-  { to: "El Salvador", currency: "US dollar", stage: "Launching first" },
-  { to: "Guatemala", currency: "Quetzal", stage: "Coming next" },
-  { to: "Honduras", currency: "Lempira", stage: "Coming next" },
+  { to: "Nigeria", currency: "Nigerian naira" },
+  { to: "Ghana", currency: "Ghanaian cedi" },
+  { to: "Egypt", currency: "Egyptian pound" },
+  { to: "Ethiopia", currency: "Ethiopian birr" },
+  { to: "Malawi", currency: "Malawian kwacha" },
+  { to: "Angola", currency: "Angolan kwanza" },
 ];
 
 const titleStyle = {
@@ -219,20 +221,19 @@ export default function PaymentsPage() {
         <div className="mx-auto w-full max-w-[1300px] px-4 lg:px-0">
           <SectionTitle>Where workers get paid</SectionTitle>
           <p className="text-white/70 text-center text-[15px] leading-[24px] max-w-[680px] mx-auto -mt-4 mb-8">
-            We start with countries that use the US dollar, so the first routes
-            need no currency conversion.
+            We focus on markets where currency volatility and devaluation can
+            erode the value of a paycheck. These African markets illustrate where
+            holding pay in digital dollars could help workers manage currency risk.
+            Examples only; payout availability is not yet confirmed.
           </p>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {CORRIDORS.map((c) => {
-              const first = c.stage === "Launching first";
               return (
                 <div key={c.to} className="rounded-[12px] border border-white/10 bg-black/20 px-6 py-5">
                   <span
-                    className={`inline-flex rounded-full px-3 py-1 text-[12px] font-medium ${
-                      first ? "bg-[#95E100]/15 text-[#95E100]" : "bg-white/10 text-white/70"
-                    }`}
+                    className="inline-flex rounded-full bg-[#95E100]/15 px-3 py-1 text-[12px] font-medium text-[#95E100]"
                   >
-                    {c.stage}
+                    Example market
                   </span>
                   <p className="mt-4 text-white text-[18px] font-medium leading-[24px]">{c.to}</p>
                   <p className="text-white/60 text-[14px]">Local currency: {c.currency}</p>

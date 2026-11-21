@@ -1,0 +1,1 @@
+- [Payments market focus](payments-market-focus.md) — country examples should emphasize currency risk, not dollarized payout markets.
