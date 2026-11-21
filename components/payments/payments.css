@@ -1,0 +1,46 @@
+.pay-dialog[open] {
+  animation: payments-dialog-in 160ms cubic-bezier(.2,.75,.3,1) both;
+}
+
+.pay-dialog {
+  max-height: 85dvh;
+  margin: auto;
+  overflow-y: auto;
+}
+
+.pay-dialog::backdrop {
+  background: rgb(5 8 11 / 72%);
+  backdrop-filter: blur(5px);
+}
+
+.pay-dialog:focus {
+  outline: none;
+}
+
+.pay-dialog button:focus-visible,
+.pay-dialog input:focus-visible,
+.pay-dialog select:focus-visible,
+.pay-dialog textarea:focus-visible,
+.payments-ui a:focus-visible,
+.payments-ui button:focus-visible,
+.payments-ui select:focus-visible {
+  outline: 2px solid #b9e873;
+  outline-offset: 3px;
+}
+
+@keyframes payments-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pay-dialog[open] {
+    animation: none;
+  }
+}
