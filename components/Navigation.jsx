@@ -282,6 +282,7 @@ export default function Navigation() {
                     <MenuLink href="/">Home</MenuLink>
                     <MenuLink href="/about">About</MenuLink>
                     <MenuLink href="/strategies">Strategies</MenuLink>
+                    <MenuLink href="/indices">Indices</MenuLink>
                     <MenuLink href="/trade">Trade</MenuLink>
                     <MenuLink href="/loans">Loans</MenuLink>
                     <MenuLink href="/payments">Payments</MenuLink>

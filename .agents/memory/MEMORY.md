@@ -1,2 +1,3 @@
 - [Payments market focus](payments-market-focus.md) — country examples should emphasize currency risk, not dollarized payout markets.
 - [Investment Vault retirement](investment-vault-retirement.md) — keep the removed page recoverable for possible future reuse.
+- [Indices product placement](indices-product-placement.md) — Indices is a standalone product in the main navbar alongside Payments.
