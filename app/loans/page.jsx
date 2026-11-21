@@ -29,7 +29,7 @@ export default function LoansPage() {
       icon: "/assets/arrowup.svg",
       title: "Invest in your business",
       description:
-        "Reinvest your crypto holdings and make your company grow. Cover operational expenses, pay employees on time, or even buy another company.",
+        "Reinvest your crypto holdings to grow your company: fund inventory, equipment, payroll, or even an acquisition.",
     },
   ];
 
