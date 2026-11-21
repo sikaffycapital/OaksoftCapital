@@ -11,7 +11,7 @@ export default function LoansPage() {
       icon: "/assets/coins.svg",
       title: "Buy more crypto",
       description:
-        "Tired of waiting endlessly for the all-time-high rate of your favorite coin? Keep holding your crypto and get liquidity to buy even more crypto without any hesitation.",
+        "Strengthen your blockchain portfolio. Keep holding your crypto and get liquidity to buy even more crypto without any hesitation.",
     },
     {
       icon: "/assets/calculator.svg",
@@ -21,7 +21,7 @@ export default function LoansPage() {
     },
     {
       icon: "/assets/house.svg",
-      title: "Make a huge purchase",
+      title: "Make an important purchase",
       description:
         "Don't put your dreams on hold. Leverage your crypto and put the cash towards a major expense. Buy a house or a car, travel to a new place or pay for studies.",
     },
@@ -141,7 +141,7 @@ export default function LoansPage() {
 
               <div className="mt-4 space-y-4">
                 <p className="text-white font-['Gramatika_Trial','Helvetica','Arial','sans-serif'] font-normal tracking-[1.125px] text-[14px] leading-[16px] md:text-[17px] md:leading-[24px]">
-                  Have you ever needed cash for something urgent, like medical bills or car repairs? In the past, you might have sold Bitcoin to cover it and incurred a taxable gain or loss. Now you don't have to.
+                  Have you ever needed cash for something urgent, like medical bills or car repairs? In the past, you might have sold your Bitcoin to cover it and incurred a taxable gain or loss. Now you don't have to.
                 </p>
 
                 <p className="text-white font-['Gramatika_Trial','Helvetica','Arial','sans-serif'] font-normal tracking-[1.125px] text-[14px] leading-[16px] md:text-[17px] md:leading-[24px]">
