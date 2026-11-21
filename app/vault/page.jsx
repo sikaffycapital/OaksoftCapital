@@ -1,8 +1,15 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { notFound } from "next/navigation";
 
 export default function VaultPage() {
+  notFound();
+}
+
+// Archived intentionally for possible reuse. To restore the page, export this
+// component as default instead of the notFound wrapper and restore its menu link.
+function ArchivedVaultPage() {
 
   const videoRef = useRef(null);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
