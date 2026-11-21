@@ -3,6 +3,7 @@
 
 import Link from "next/link";
 import RequestAccessForm from "@/components/payments/RequestAccessForm";
+import PaydayPreview from "@/components/payments/PaydayPreview";
 import { cardClass } from "@/components/payments/ui";
 
 export const metadata = {
@@ -41,6 +42,11 @@ const AUDIENCES = [
     title: "Remote workers",
     description:
       "Hold your pay in dollars and convert to local currency when the rate suits you, not on the bank's schedule.",
+  },
+  {
+    title: "Payroll platforms",
+    description: "Connect your payroll system by API and pay workers in USDC.",
+    coming: true,
   },
 ];
 
@@ -146,17 +152,18 @@ export default function PaymentsPage() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="#request-access"
-                  className="inline-flex justify-center items-center rounded-[8px] bg-[#95E100] text-black font-semibold px-[41px] py-[18px] hover:opacity-90"
+                  className="inline-flex justify-center items-center rounded-[8px] bg-[#95E100] text-black font-semibold px-[28px] py-[16px] transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#95E100]"
                 >
                   Request access
                 </a>
                 <Link
                   href="/payments/dashboard"
-                  className="inline-flex justify-center items-center rounded-[8px] border border-white/30 text-white px-[32px] py-[18px] hover:border-[#95E100] hover:text-[#95E100] transition-colors"
+                  className="inline-flex justify-center items-center rounded-[8px] border border-white/30 text-white px-[24px] py-[16px] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#95E100] hover:text-[#95E100] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#95E100]"
                 >
-                  See the employer dashboard
+                  Try the demo, no sign-up
                 </Link>
               </div>
+              <p className="mt-3 text-[13px] text-white/55">Free preview. No account or wallet needed.</p>
               <p className="mt-4 text-white/60 text-[15px]">
                 Paid by an employer?{" "}
                 <Link href="/payments/wallet" className="text-[#95E100] underline underline-offset-4">
@@ -179,15 +186,20 @@ export default function PaymentsPage() {
         </div>
       </section>
 
+      <PaydayPreview />
+
       {/* Who it's for */}
       <section className="w-full pt-16">
         <div className="mx-auto w-full max-w-[1300px] px-4 lg:px-0">
           <SectionTitle>Built for</SectionTitle>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {AUDIENCES.map((a) => (
-              <div key={a.title} className={`${cardClass} p-[30px_25px] flex flex-col items-start gap-[18px]`}>
-                <img src={a.icon} alt="" className="w-[40px] h-[40px]" />
-                <h3 className="text-white font-medium text-[20px] leading-[26px] md:text-[22px]">{a.title}</h3>
+              <div key={a.title} className={`${cardClass} p-[30px_25px] flex flex-col items-start gap-[18px] transition-transform duration-200 hover:-translate-y-1`}>
+                {a.icon ? <img src={a.icon} alt="" className="w-[40px] h-[40px]" /> : <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#95E100]/30 bg-[#95E100]/10 text-[#95E100] text-lg font-semibold">API</span>}
+                <div className="flex w-full items-center justify-between gap-2">
+                  <h3 className="text-white font-medium text-[20px] leading-[26px] md:text-[22px]">{a.title}</h3>
+                  {a.coming && <span className="shrink-0 rounded-full border border-white/15 bg-white/[.05] px-2.5 py-1 text-[11px] text-white/65">Coming</span>}
+                </div>
                 <p className="text-white/80 text-[15px] leading-[24px]">{a.description}</p>
               </div>
             ))}
@@ -254,6 +266,13 @@ export default function PaymentsPage() {
           </p>
           <div className="relative px-6 py-8 md:px-10 md:py-10" style={glassPanel}>
             <RequestAccessForm />
+          </div>
+          <div className="mt-8 flex flex-col items-center gap-4">
+            <p className="text-center text-[13px] text-white/55">Free preview. No account or wallet needed.</p>
+            <div className="flex w-full flex-col justify-center gap-3 sm:flex-row">
+              <a href="#request-access" className="inline-flex min-h-12 items-center justify-center rounded-[8px] bg-[#95E100] px-7 py-3 font-semibold text-black transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#95E100]">Request access</a>
+              <Link href="/payments/dashboard" className="inline-flex min-h-12 items-center justify-center rounded-[8px] border border-white/30 px-7 py-3 text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-[#95E100] hover:text-[#95E100] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#95E100]">Try the demo, no sign-up</Link>
+            </div>
           </div>
           <p className="mt-6 text-center text-white/40 text-[13px] leading-[20px]">
             Oaksoft Payments is in a private pilot. Availability depends on your
