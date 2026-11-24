@@ -142,7 +142,7 @@ export default function PaymentsPage() {
                 Oaksoft Payments · Private pilot
               </p>
               <h2 className="text-white font-bold tracking-[0.5px] text-[34px] leading-[40px] md:text-[56px] md:leading-[60px]">
-                Pay your remote team in dollars they keep
+                Pay your remote team in dollars they control
               </h2>
               <p className="mt-6 text-white/80 text-[16px] leading-[26px] md:text-[18px] md:leading-[30px] max-w-[640px]">
                 Fund payroll in USD from one dashboard. Each worker gets a USDC
