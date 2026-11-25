@@ -23,9 +23,34 @@
 .pay-dialog textarea:focus-visible,
 .payments-ui a:focus-visible,
 .payments-ui button:focus-visible,
-.payments-ui select:focus-visible {
+.payments-ui select:focus-visible,
+.payments-ui input:focus-visible,
+.payments-ui textarea:focus-visible,
+.payments-ui summary:focus-visible {
   outline: 2px solid #b9e873;
   outline-offset: 3px;
+}
+
+.benefit-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.benefit-details .when-open {
+  display: none;
+}
+
+.benefit-details[open] .when-open {
+  display: inline;
+}
+
+.benefit-details[open] .when-closed {
+  display: none;
+}
+
+.payments-ui button,
+.payments-ui a,
+.benefit-details summary {
+  -webkit-tap-highlight-color: transparent;
 }
 
 @keyframes payments-dialog-in {

@@ -5,17 +5,18 @@ import Link from "next/link";
 import RequestAccessForm from "@/components/payments/RequestAccessForm";
 import PaydayPreview from "@/components/payments/PaydayPreview";
 import { cardClass } from "@/components/payments/ui";
+import BenefitPreviews from "@/components/payments/BenefitPreviews";
 
 export const metadata = {
   title: "Payments | Oaksoft Capital",
   description:
-    "Dollar payroll for remote teams in markets exposed to currency risk. Fund payroll in USD; workers hold digital dollars and choose when to convert. Private pilot.",
+    "A proposed USDC payroll wallet concept: remote workers may choose to hold or convert part of their pay. Pilot fit, custody, and country eligibility are under evaluation.",
 };
 
 const HIGHLIGHTS = [
-  { value: "Seconds", label: "for pay to reach a worker on Stellar" },
-  { value: "USDC", label: "a dollar-backed stablecoin" },
-  { value: "Their keys", label: "each worker controls their own wallet" },
+  { value: "Your call", label: "hold pay in USDC or choose when to convert" },
+  { value: "USDC", label: "a stablecoin designed to track the US dollar" },
+  { value: "Prototype", label: "wallet setup and custody still require validation" },
 ];
 
 const AUDIENCES = [
@@ -23,50 +24,45 @@ const AUDIENCES = [
     icon: "/assets/bills.svg",
     title: "Staffing companies",
     description:
-      "Run payroll for every placed worker from one dashboard, in one batch, from a CSV.",
+      "A workflow to explore: prepare batch payroll and model a worker's USDC balance.",
   },
   {
     icon: "/assets/hugeicons_blockchain-02.svg",
-    title: "Nearshore and BPO teams",
+    title: "Payroll providers & EORs",
     description:
-      "Pay agents and developers across borders without a wire per person.",
+      "Explore a payroll wallet model with a potential pilot or distribution partner.",
   },
   {
     icon: "/assets/icons8_bank-card.svg",
-    title: "Businesses with remote workers",
+    title: "Remote-first employers",
     description:
-      "Pay contractors abroad in dollars, with every payment's status in one place.",
+      "Consider how dollar-denominated pay could fit existing worker and employer workflows.",
   },
   {
     icon: "/assets/iconamoon_send.svg",
     title: "Remote workers",
     description:
-      "Hold your pay in dollars and convert to local currency when the rate suits you, not on the bank's schedule.",
-  },
-  {
-    title: "Payroll platforms",
-    description: "Connect your payroll system by API and pay workers in USDC.",
-    coming: true,
+      "Explore holding all or part of pay in USDC, then choosing whether and when to convert.",
   },
 ];
 
 const STEPS = [
   {
     title: "Fund payroll",
-    description: "The employer funds payroll in USD from the dashboard.",
+    description: "An employer or payroll partner funds a simulated USDC payroll.",
   },
   {
-    title: "Convert to USDC",
-    description: "We convert it 1:1 into USDC, digital dollars on the Stellar network.",
+    title: "Pay in USDC",
+    description: "The concept is a USDC-denominated wallet balance. Funding and custody models are still being evaluated.",
   },
   {
-    title: "Pay every worker",
-    description: "Each worker is paid in seconds, into a wallet they control.",
+    title: "Worker decides",
+    description: "Workers could hold all or part of pay in USDC, or choose a partial conversion when useful.",
   },
   {
-    title: "Workers choose",
+    title: "Convert what is needed",
     description:
-      "Keep dollars, cash out to a bank account or at a cash pickup point. Card and bill pay are coming.",
+      "No automatic payday conversion is intended. Local cashout options, setup, and custody remain subject to validation.",
   },
 ];
 
@@ -139,35 +135,36 @@ export default function PaymentsPage() {
                 className="text-[#95E100] uppercase mb-4"
                 style={{ ...titleStyle, fontSize: "15px", letterSpacing: "3px" }}
               >
-                Oaksoft Payments · Private pilot
+                Oaksoft Payments · Concept, exploring pilot fit
               </p>
               <h2 className="text-white font-bold tracking-[0.5px] text-[34px] leading-[40px] md:text-[56px] md:leading-[60px]">
                 Pay your remote team in dollars they control
               </h2>
               <p className="mt-6 text-white/80 text-[16px] leading-[26px] md:text-[18px] md:leading-[30px] max-w-[640px]">
-                Fund payroll in USD from one dashboard. Each worker gets a USDC
-                wallet they control and converts to local currency only when
-                they choose, instead of taking the bank&apos;s rate on payday.
+                A proposed payroll wallet lets workers choose whether to hold
+                pay in USDC or convert part of it, and when. We&apos;re exploring
+                potential distribution and pilot partners; wallet setup, custody,
+                and country eligibility still need validation.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="#request-access"
                   className="inline-flex justify-center items-center rounded-[8px] bg-[#95E100] text-black font-semibold px-[28px] py-[16px] transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#95E100]"
                 >
-                  Request access
+                  Request pilot information
                 </a>
                 <Link
-                  href="/payments/dashboard"
+                  href="/payments/wallet"
                   className="inline-flex justify-center items-center rounded-[8px] border border-white/30 text-white px-[24px] py-[16px] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#95E100] hover:text-[#95E100] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#95E100]"
                 >
-                  Try the demo, no sign-up
+                  Explore worker wallet demo
                 </Link>
               </div>
-              <p className="mt-3 text-[13px] text-white/55">Free preview. No account or wallet needed.</p>
+              <p className="mt-3 text-[13px] text-white/55">Browser-only simulation. No account, wallet, or live payments.</p>
               <p className="mt-4 text-white/60 text-[15px]">
-                Paid by an employer?{" "}
-                <Link href="/payments/wallet" className="text-[#95E100] underline underline-offset-4">
-                  See the worker wallet
+                Employer or payroll team?{" "}
+                <Link href="/payments/dashboard" className="text-[#95E100] underline underline-offset-4">
+                  Explore the employer demo
                 </Link>
               </p>
             </div>
@@ -188,17 +185,26 @@ export default function PaymentsPage() {
 
       <PaydayPreview />
 
+      <section className="w-full pt-16">
+        <div className="mx-auto w-full max-w-[1100px] px-4 lg:px-0">
+          <SectionTitle>Ideas under review</SectionTitle>
+          <p className="mx-auto -mt-4 mb-8 max-w-[680px] text-center text-[15px] leading-6 text-white/65">
+            These are benefit concepts, not features or offers. Nothing can be enrolled in or activated here.
+          </p>
+          <BenefitPreviews />
+        </div>
+      </section>
+
       {/* Who it's for */}
       <section className="w-full pt-16">
         <div className="mx-auto w-full max-w-[1300px] px-4 lg:px-0">
-          <SectionTitle>Built for</SectionTitle>
+          <SectionTitle>Potential fit to explore</SectionTitle>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {AUDIENCES.map((a) => (
               <div key={a.title} className={`${cardClass} p-[30px_25px] flex flex-col items-start gap-[18px] transition-transform duration-200 hover:-translate-y-1`}>
                 {a.icon ? <img src={a.icon} alt="" className="w-[40px] h-[40px]" /> : <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#95E100]/30 bg-[#95E100]/10 text-[#95E100] text-lg font-semibold">API</span>}
                 <div className="flex w-full items-center justify-between gap-2">
                   <h3 className="text-white font-medium text-[20px] leading-[26px] md:text-[22px]">{a.title}</h3>
-                  {a.coming && <span className="shrink-0 rounded-full border border-white/15 bg-white/[.05] px-2.5 py-1 text-[11px] text-white/65">Coming</span>}
                 </div>
                 <p className="text-white/80 text-[15px] leading-[24px]">{a.description}</p>
               </div>
@@ -231,12 +237,9 @@ export default function PaymentsPage() {
       {/* Corridors */}
       <section className="w-full pt-20">
         <div className="mx-auto w-full max-w-[1300px] px-4 lg:px-0">
-          <SectionTitle>Where workers get paid</SectionTitle>
+          <SectionTitle>Example currencies to consider</SectionTitle>
           <p className="text-white/70 text-center text-[15px] leading-[24px] max-w-[680px] mx-auto -mt-4 mb-8">
-            We focus on markets where currency volatility and devaluation can
-            erode the value of a paycheck. These African markets illustrate where
-            holding pay in digital dollars could help workers manage currency risk.
-            Examples only; payout availability is not yet confirmed.
+            These African currencies are examples for exploring the problem of currency risk—not launch markets or confirmed payout coverage. Holding USDC does not guarantee purchasing power or a better exchange rate.
           </p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {CORRIDORS.map((c) => {
@@ -261,22 +264,21 @@ export default function PaymentsPage() {
         <div className="mx-auto w-full max-w-[900px] px-4 lg:px-0">
           <SectionTitle>Request access</SectionTitle>
           <p className="text-white/70 text-center text-[15px] leading-[24px] max-w-[640px] mx-auto -mt-4 mb-8">
-            We&apos;re onboarding a small group of pilot employers. Tell us about
-            your team and we&apos;ll be in touch.
+            We&apos;re gathering pilot interest from payroll providers, employers of record, staffing companies, and remote teams. Tell us about your organization; no enrollment or live service is offered here.
           </p>
           <div className="relative px-6 py-8 md:px-10 md:py-10" style={glassPanel}>
             <RequestAccessForm />
           </div>
           <div className="mt-8 flex flex-col items-center gap-4">
-            <p className="text-center text-[13px] text-white/55">Free preview. No account or wallet needed.</p>
+            <p className="text-center text-[13px] text-white/55">Browser-only simulation. No account, wallet, or live payments.</p>
             <div className="flex w-full flex-col justify-center gap-3 sm:flex-row">
-              <a href="#request-access" className="inline-flex min-h-12 items-center justify-center rounded-[8px] bg-[#95E100] px-7 py-3 font-semibold text-black transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#95E100]">Request access</a>
-              <Link href="/payments/dashboard" className="inline-flex min-h-12 items-center justify-center rounded-[8px] border border-white/30 px-7 py-3 text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-[#95E100] hover:text-[#95E100] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#95E100]">Try the demo, no sign-up</Link>
+              <a href="#request-access" className="inline-flex min-h-12 items-center justify-center rounded-[8px] bg-[#95E100] px-7 py-3 font-semibold text-black transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#95E100]">Request pilot information</a>
+              <Link href="/payments/wallet" className="inline-flex min-h-12 items-center justify-center rounded-[8px] border border-white/30 px-7 py-3 text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-[#95E100] hover:text-[#95E100] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#95E100]">Explore worker wallet demo</Link>
             </div>
+            <Link href="/payments/dashboard" className="text-sm text-[#95E100] underline underline-offset-4">Employer / payroll funding demo</Link>
           </div>
           <p className="mt-6 text-center text-white/40 text-[13px] leading-[20px]">
-            Oaksoft Payments is in a private pilot. Availability depends on your
-            workers&apos; countries and our partners&apos; coverage.
+            Oaksoft Capital Management is evaluating a proposed payroll wallet concept. This is not a launched or licensed service. Pilot fit, providers, custody, country eligibility, and availability are not confirmed. USDC is not a bank deposit and may lose its dollar peg.
           </p>
         </div>
       </section>

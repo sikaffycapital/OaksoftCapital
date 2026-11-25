@@ -30,7 +30,7 @@ export default function PaydayPreview() {
         <div className="flex flex-col justify-center border-b border-white/10 bg-[#95E100]/[.045] p-6 sm:p-9 md:border-b-0 md:border-r">
           <p className="mb-3 text-[12px] uppercase tracking-[.2em] text-[#b7e878]">A payday, made clear</p>
           <h2 id="payday-preview-title" className="text-3xl font-semibold leading-tight text-white sm:text-[38px]">See what payday could look like.</h2>
-          <p className="mt-4 max-w-md text-sm leading-6 text-white/65">A simple, illustrative view of dollar payroll and the amount a worker may receive after the sample fee.</p>
+          <p className="mt-4 max-w-md text-sm leading-6 text-white/65">A sample conversion preview a worker could choose to make. Converting is optional; payday does not automatically exchange USDC into local currency.</p>
           <p className="mt-6 text-xs leading-5 text-white/45">This is a browser-only preview. No money moves, and no live rates are used.</p>
         </div>
         <div className="p-5 sm:p-8">
@@ -61,7 +61,7 @@ export default function PaydayPreview() {
             <p className="text-[11px] uppercase tracking-[.17em] text-[#b7e878]">{view === "employer" ? "Employer sends" : "Worker receives"}</p>
             {valid && resultIsValid ? (
               view === "employer" ? (
-                <p className="mt-3 text-lg font-medium leading-7 text-white sm:text-xl">{formattedAmount} USD arrives as {number2.format(numericAmount)} USDC in seconds.</p>
+                <p className="mt-3 text-lg font-medium leading-7 text-white sm:text-xl">{formattedAmount} USD is shown as {number2.format(numericAmount)} USDC in this funding illustration.</p>
               ) : (
                 <>
                   <p className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">{formattedWorker}</p>
@@ -71,7 +71,7 @@ export default function PaydayPreview() {
               )
             ) : <p className="mt-3 text-sm leading-6 text-white/55">Enter a valid amount to see the illustrative preview.</p>}
           </div>
-          <p className="mt-3 text-center text-xs text-white/45">Sample rates and fee, for illustration only.</p>
+          <p className="mt-3 text-center text-xs leading-5 text-white/45">Optional sample conversion only. Rates and fee are illustrative, not an offer; holding USDC does not guarantee a favorable rate or purchasing power.</p>
         </div>
       </div>
     </section>

@@ -7,6 +7,7 @@ import { usePayrollDemo } from "./DemoProvider";
 import { quoteCashout } from "@/lib/payments/demo.mjs";
 import { SAMPLE_EMPLOYER } from "@/lib/payments/sampleData";
 import { usd, number2, cardClass, Pill, eyebrowStyle } from "@/components/payments/ui";
+import BenefitPreviews from "@/components/payments/BenefitPreviews";
 
 const moneyFromCents = (cents) => usd.format((cents || 0) / 100);
 const inputClass = "w-full rounded-lg border border-white/15 bg-[#0e131b] px-3.5 py-3 text-white outline-none transition focus:border-[#a8dc55] focus:ring-2 focus:ring-[#a8dc55]/15";
@@ -33,15 +34,16 @@ export default function WorkerWallet() {
   const strings = {
     en: {
       languageLabel: "Language", english: "English", spanish: "Español", sample: "Sample data.", banner: "Worker wallet demo. Balances and cashouts are simulated in this browser only; refreshing resets the demo.",
-      noWorker: "No workers are available in this demo.", dashboard: "Open employer dashboard", wallet: "Worker wallet", headline: "Your dollars, clearly.", employerView: "Employer view",
-      walletBalance: "Wallet balance", requestAccess: "Request access", convertedTo: "converted to", coming: "Coming", close: "Close",
-      viewingWorker: "Viewing worker", balanceLabel: "Available balance · USDC", active: "Active", verificationPending: "Verification pending", inviteSent: "Invite sent", balanceNote: "Digital dollar balance shown for demonstration. No account or passkey is connected.",
+      noWorker: "No workers are available in this demo.", dashboard: "Open employer dashboard", wallet: "Worker wallet", headline: "Your pay. Your conversion choice.", employerView: "Employer view",
+      walletBalance: "Wallet balance", requestAccess: "Pilot information", convertedTo: "converted to", coming: "Coming", close: "Close",
+      viewingWorker: "Viewing worker", balanceLabel: "Available balance · USDC", active: "Active", verificationPending: "Verification pending", inviteSent: "Invite sent", balanceNote: "Illustrative balance only. Wallet setup and custody arrangements have not been finalized.",
       paidBy: "Paid by", setupTitle: "Wallet setup is simulated", setupText: "Accept the invitation, then simulate verification from the employer view. Cashout remains unavailable until the worker is active.", continueSetup: "Continue setup in employer view",
-      convertBalance: "Convert a demo balance", cashOut: "Cash out", simulation: "Simulation", amountConvert: "Amount to convert", available: "Available:", fullBalance: "Use full balance",
+      convertBalance: "Your choice", cashOut: "Convert part to local currency", simulation: "Simulation", amountConvert: "Amount to convert", available: "Available:", fullBalance: "Use full balance",
+      holdChoice: "Hold in USDC", convertChoice: "Choose an amount to convert", holdTitle: "Keep some or all in USDC", holdText: "Nothing converts automatically on payday. This view is only an explanation—not a saved preference or transaction. You can switch back to the conversion demo at any time.", conversionChoiceText: "Choose whether to convert, and how much. A partial conversion leaves the rest of this illustrative balance in USDC.", remainingAfter: "USDC remaining after this sample conversion", riskTitle: "Important risks and limitations", riskText: "USDC is a stablecoin, not a bank deposit, and may lose its dollar peg. A USDC balance does not guarantee purchasing power or a favorable exchange rate. Wallet setup, custody, key management, and country eligibility are still subject to validation. No live payroll, cashout, or custody integrations are connected.", concepts: "Benefit ideas under review",
       rate: "Demo conversion rate", fee: "Demo fee · 1%", estimated: "Estimated demo amount", dismiss: "Dismiss", destination: "Demo destination", bankTransfer: "Bank transfer", cashPickup: "Cash pickup", destinationDemo: "Demo destination", review: "Review cashout",
       explanation: "The fixed GTQ conversion is an illustrative Guatemala sample shown consistently for all selected demo workers; it is not country-specific or connected to a local cashout rail. Rate and fee are not an offer or quote. No bank, cash network, or payment provider is contacted.",
       receipt: "Demo receipt", simulated: "Cashout simulated", sampleFee: "Sample fee:", remaining: "Remaining demo balance:", reference: "Reference", noMoney: "No real money was sent.", dismissReceipt: "Dismiss receipt",
-      comingFeatures: "Coming soon features", debitCard: "Debit card", cardUnavailable: "Card access is not available in this demo.", payBills: "Pay bills", billsUnavailable: "Bill payments are not available in this demo.",
+      comingFeatures: "Coming features", debitCard: "Card payments", cardUnavailable: "Coming. No card is issued or available in this demo.", payBills: "Bill payments", billsUnavailable: "Coming. Bill payment is not available in this demo.",
       ledger: "Shared demo ledger", activity: "Activity", entries: "entries", noActivity: "No activity yet", emptyActivity: "Simulated payroll payments and cashouts will appear here.",
       footer: "Oaksoft Capital Management · Digital dollar payroll demo ·", employerDashboard: "Employer dashboard", reviewCashout: "Review cashout",
       reviewText: "Review the demo values before confirming. This does not contact a provider or move real money.", fromBalance: "From your balance", demoRate: "Demo rate",
@@ -62,15 +64,16 @@ export default function WorkerWallet() {
     },
     es: {
       languageLabel: "Idioma", english: "English", spanish: "Español", sample: "Datos de muestra.", banner: "Billetera de demostración. Los saldos y retiros se simulan solo en este navegador; al actualizar, se reinicia la demostración.",
-      noWorker: "No hay trabajadores disponibles en esta demostración.", dashboard: "Abrir panel del empleador", wallet: "Billetera del trabajador", headline: "Tus dólares, con claridad.", employerView: "Vista del empleador",
-      walletBalance: "Saldo de la billetera", requestAccess: "Solicitar acceso", convertedTo: "convertidos a", coming: "Próximamente", close: "Cerrar",
-      viewingWorker: "Trabajador seleccionado", balanceLabel: "Saldo disponible · USDC", active: "Activa", verificationPending: "Verificación pendiente", inviteSent: "Invitación enviada", balanceNote: "Saldo en dólares digitales mostrado solo como demostración. No hay ninguna cuenta ni clave de acceso conectada.",
+      noWorker: "No hay trabajadores disponibles en esta demostración.", dashboard: "Abrir panel del empleador", wallet: "Billetera del trabajador", headline: "Tu pago. Tú eliges cuándo convertir.", employerView: "Vista del empleador",
+      walletBalance: "Saldo de la billetera", requestAccess: "Información del piloto", convertedTo: "convertidos a", coming: "Próximamente", close: "Cerrar",
+      viewingWorker: "Trabajador seleccionado", balanceLabel: "Saldo disponible · USDC", active: "Activa", verificationPending: "Verificación pendiente", inviteSent: "Invitación enviada", balanceNote: "Saldo ilustrativo únicamente. La configuración y custodia de la billetera aún no están definidas.",
       paidBy: "Pagado por", setupTitle: "La configuración de la billetera es simulada", setupText: "Acepta la invitación y luego simula la verificación desde la vista del empleador. El retiro no estará disponible hasta que el trabajador esté activo.", continueSetup: "Continuar configuración en la vista del empleador",
-      convertBalance: "Convertir un saldo de demostración", cashOut: "Retirar", simulation: "Simulación", amountConvert: "Monto a convertir", available: "Disponible:", fullBalance: "Usar todo el saldo",
+      convertBalance: "Tú decides", cashOut: "Convertir una parte a moneda local", simulation: "Simulación", amountConvert: "Monto a convertir", available: "Disponible:", fullBalance: "Usar todo el saldo",
+      holdChoice: "Mantener en USDC", convertChoice: "Elegir monto para convertir", holdTitle: "Mantén una parte o todo en USDC", holdText: "Nada se convierte automáticamente el día de pago. Esta vista solo explica el concepto; no guarda una preferencia ni realiza una transacción. Puedes volver a la demostración de conversión cuando quieras.", conversionChoiceText: "Elige si quieres convertir y cuánto. Una conversión parcial deja el resto de este saldo ilustrativo en USDC.", remainingAfter: "USDC restantes después de esta conversión de muestra", riskTitle: "Riesgos y limitaciones importantes", riskText: "USDC es una stablecoin, no un depósito bancario, y puede perder su paridad con el dólar. Un saldo en USDC no garantiza poder adquisitivo ni un tipo de cambio favorable. La configuración de la billetera, custodia, gestión de claves y elegibilidad por país aún deben validarse. No hay integraciones reales de nómina, retiros ni custodia.", concepts: "Ideas de beneficios en evaluación",
       rate: "Tipo de cambio de demostración", fee: "Comisión de demostración · 1%", estimated: "Monto estimado de demostración", dismiss: "Cerrar", destination: "Destino de demostración", bankTransfer: "Transferencia bancaria", cashPickup: "Retiro en efectivo", destinationDemo: "Destino simulado", review: "Revisar retiro",
       explanation: "La conversión fija a GTQ es una muestra ilustrativa de Guatemala, igual para todos los trabajadores seleccionados; no es específica del país ni está conectada a un servicio local de retiro. El tipo de cambio y la comisión no son una oferta ni una cotización. No se contacta a ningún banco, red de efectivo ni proveedor de pagos.",
       receipt: "Comprobante de demostración", simulated: "Retiro simulado", sampleFee: "Comisión de muestra:", remaining: "Saldo restante de demostración:", reference: "Referencia", noMoney: "No se envió dinero real.", dismissReceipt: "Cerrar comprobante",
-      comingFeatures: "Funciones próximas", debitCard: "Tarjeta de débito", cardUnavailable: "El acceso a tarjetas no está disponible en esta demostración.", payBills: "Pagar facturas", billsUnavailable: "El pago de facturas no está disponible en esta demostración.",
+      comingFeatures: "Funciones futuras", debitCard: "Pagos con tarjeta", cardUnavailable: "Próximamente. No se emite ni está disponible una tarjeta en esta demostración.", payBills: "Pago de facturas", billsUnavailable: "Próximamente. El pago de facturas no está disponible en esta demostración.",
       ledger: "Registro compartido de demostración", activity: "Actividad", entries: "movimientos", noActivity: "Aún no hay actividad", emptyActivity: "Los pagos de nómina y retiros simulados aparecerán aquí.",
       footer: "Oaksoft Capital Management · Demostración de nómina en dólares digitales ·", employerDashboard: "Panel del empleador", reviewCashout: "Revisar retiro",
       reviewText: "Revisa los valores de demostración antes de confirmar. No se contacta a ningún proveedor ni se mueve dinero real.", fromBalance: "De tu saldo", demoRate: "Tipo de cambio de demostración",
@@ -113,6 +116,7 @@ export default function WorkerWallet() {
   const worker = state.workers.find((w) => w.id === workerId) || state.workers.find((w) => w.id === "W-102") || state.workers[0];
   const balanceCents = state.balances[worker?.id] || 0;
   const active = worker?.stage === "active" || worker?.wallet === "active";
+  const [walletChoice, setWalletChoice] = useState("convert");
   const [amount, setAmount] = useState("");
   const [destination, setDestination] = useState("bank");
   const [dialog, setDialog] = useState(false);
@@ -165,8 +169,24 @@ export default function WorkerWallet() {
         <div className="relative mt-5 border-t border-white/10 pt-4 text-sm"><p className="text-white/80">{worker.name}</p><p className="mt-1 text-xs text-white/45">{t.paidBy} {SAMPLE_EMPLOYER.name} · {countryName(worker.country)}</p></div>
       </section>
 
+      <section className={`${cardClass} mt-4 p-4 sm:p-5`} aria-label={t.convertBalance}>
+        <div role="group" aria-label={t.convertBalance} className="grid grid-cols-2 rounded-lg border border-white/10 bg-black/15 p-1">
+          {[[ "convert", t.convertChoice ], [ "hold", t.holdChoice ]].map(([key, label]) => (
+            <button key={key} type="button" aria-pressed={walletChoice === key} onClick={() => setWalletChoice(key)} className={`min-h-11 rounded-md px-3 py-2 text-sm transition-colors ${walletChoice === key ? "bg-[#a8dc55] font-semibold text-[#151b13]" : "text-white/65 hover:bg-white/[.06] hover:text-white"}`}>{label}</button>
+          ))}
+        </div>
+        {walletChoice === "convert" && <p className="mt-3 text-xs leading-5 text-white/50">{t.conversionChoiceText}</p>}
+        {walletChoice === "hold" && <div className="mt-4 rounded-lg border border-[#a8dc55]/20 bg-[#a8dc55]/[.05] p-4"><h2 className="font-medium text-white">{t.holdTitle}</h2><p className="mt-1 text-sm leading-5 text-white/60">{t.holdText}</p><button type="button" onClick={() => setWalletChoice("convert")} className="mt-3 min-h-10 text-sm text-[#c4e794] underline underline-offset-4">{t.convertChoice}</button></div>}
+      </section>
+
+      <aside role="note" className="mt-4 rounded-xl border border-amber-200/20 bg-amber-200/[.06] p-4 sm:p-5">
+        <h2 className="text-sm font-semibold text-amber-100">{t.riskTitle}</h2>
+        <p className="mt-2 text-xs leading-5 text-amber-50/70">{t.riskText}</p>
+      </aside>
+
       {!active && <section className={`${cardClass} mt-4 border border-amber-200/15 p-5`}><div className="flex items-start gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-amber-200" /><div><h2 className="font-medium">{t.setupTitle}</h2><p className="mt-1 text-sm leading-5 text-white/55">{t.setupText}</p><Link href="/payments/dashboard" className="mt-3 inline-block text-sm text-[#c4e794] underline underline-offset-4">{t.continueSetup}</Link></div></div></section>}
 
+      {walletChoice === "convert" && <>
       <section aria-labelledby="cashout-heading" className={`${cardClass} mt-4 p-5 sm:p-6`}>
         <div className="flex items-start justify-between gap-3"><div><p className="text-[11px] uppercase tracking-[.17em] text-white/40">{t.convertBalance}</p><h2 id="cashout-heading" className="mt-1 text-xl font-semibold">{t.cashOut}</h2></div><span className="rounded-md border border-white/10 px-2 py-1 text-[10px] uppercase tracking-[.12em] text-white/40">{t.simulation}</span></div>
         <form onSubmit={openReview} className="mt-5 space-y-4">
@@ -176,6 +196,7 @@ export default function WorkerWallet() {
              <div className="flex justify-between py-1.5"><dt className="text-white/50">{t.rate}</dt><dd className="tabular-nums">1 USDC = Q{number2.format(7.7)} GTQ</dd></div>
              <div className="flex justify-between py-1.5"><dt className="text-white/50">{t.fee}</dt><dd className="tabular-nums">{moneyFromCents(quote.feeCents)}</dd></div>
              <div className="mt-1 flex justify-between border-t border-white/10 pt-3"><dt className="font-medium">{t.estimated}</dt><dd className="font-semibold tabular-nums text-[#c4e794]">Q{number2.format(quote.receiveCents / 100)} GTQ</dd></div>
+              {quote.amountCents < balanceCents && <div className="flex justify-between gap-3 border-t border-white/10 pt-3"><dt className="text-white/65">{t.remainingAfter}</dt><dd className="shrink-0 font-semibold tabular-nums text-[#c4e794]">{moneyFromCents(balanceCents - quote.amountCents)}</dd></div>}
           </dl>}
           {quoteError && <p className="text-xs text-rose-200/90">{quoteError}</p>}
           {localError && <p role="alert" className="rounded-lg border border-rose-300/20 bg-rose-300/10 p-3 text-sm text-rose-100">{translatedError(localError)}</p>}
@@ -187,8 +208,14 @@ export default function WorkerWallet() {
       </section>
 
       {cashoutReceipt && <section role="status" className="mt-4 rounded-xl border border-[#a8dc55]/30 bg-[#a8dc55]/[.07] p-5"><p className="text-[11px] uppercase tracking-[.15em] text-[#c4e794]">{t.receipt} · {cashoutReceipt.id}</p><h2 className="mt-2 text-lg font-semibold">{t.simulated}</h2><p className="mt-1 text-sm text-white/55">{moneyFromCents(cashoutReceipt.amountCents)} {t.convertedTo} Q{number2.format(cashoutReceipt.receiveCents / 100)} GTQ · {cashoutReceipt.destination === "bank" ? t.bankTransfer.toLowerCase() : t.cashPickup.toLowerCase()}</p><p className="mt-1 text-xs text-white/45">{t.sampleFee} {moneyFromCents(cashoutReceipt.feeCents)} · {localizedDate(cashoutReceipt.date)}</p><p className="mt-2 text-xs text-white/45">{t.remaining} {moneyFromCents(balanceCents)} · {t.reference} {cashoutReceipt.id}</p><p className="mt-1 text-xs text-white/40">{t.noMoney}</p><button type="button" onClick={() => dispatch({ type: "CLEAR_FEEDBACK" })} className="mt-3 text-xs text-white/50 underline underline-offset-4">{t.dismissReceipt}</button></section>}
+      </>}
 
       <section aria-label={t.comingFeatures} className="mt-4 grid grid-cols-2 gap-3">{[[t.debitCard, t.cardUnavailable], [t.payBills, t.billsUnavailable]].map(([name, description]) => <article key={name} className={`${cardClass} p-4`}><div className="flex items-center justify-between gap-2"><h2 className="text-sm font-medium">{name}</h2><Pill>{t.coming}</Pill></div><p className="mt-2 text-xs leading-5 text-white/45">{description}</p></article>)}</section>
+
+      <section aria-label={t.concepts} className={`${cardClass} mt-4 p-5 sm:p-6`}>
+        <h2 className="mb-4 text-lg font-semibold">{t.concepts}</h2>
+        <BenefitPreviews language={language} />
+      </section>
 
       <section aria-labelledby="activity-heading" className={`${cardClass} mt-4 p-5 sm:p-6`}><div className="flex items-end justify-between"><div><p className="text-[11px] uppercase tracking-[.17em] text-white/40">{t.ledger}</p><h2 id="activity-heading" className="mt-1 text-xl font-semibold">{t.activity}</h2></div><span className="text-xs text-white/35">{activities.length} {t.entries}</span></div>
         {activities.length ? <ul className="mt-3 divide-y divide-white/[.08]">{activities.map((entry) => <li key={entry.id} className="flex items-center justify-between gap-4 py-3"><div className="min-w-0"><p className="truncate text-sm">{activityLabel(entry.label)}</p><p className="mt-1 text-xs text-white/40">{localizedDate(entry.date)}</p></div><span className={`shrink-0 font-mono text-sm tabular-nums ${entry.amountCents > 0 ? "text-[#c4e794]" : "text-white/75"}`}>{entry.amountCents > 0 ? "+" : "−"}{moneyFromCents(Math.abs(entry.amountCents))}</span></li>)}</ul> : <div className="mt-4 rounded-lg border border-dashed border-white/10 px-4 py-7 text-center"><p className="text-sm text-white/60">{t.noActivity}</p><p className="mt-1 text-xs text-white/35">{t.emptyActivity}</p></div>}

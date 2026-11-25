@@ -133,17 +133,22 @@ export default function PaymentsDashboard() {
 
   return <main className="payments-ui min-h-[100dvh] bg-transparent text-white">
     <div className="mx-auto w-full max-w-[1280px] px-4 pb-16 pt-7 sm:px-6 lg:px-8 lg:pt-10">
-      <SampleBanner>Connected payroll demo. Actions change only this browser session; refresh resets the simulation.</SampleBanner>
+      <SampleBanner>Browser-only payroll and funding simulation. No live payroll, cashout, custody, or provider integrations are connected; refresh resets this demo.</SampleBanner>
       <header className="mb-8 flex flex-col justify-between gap-5 border-b border-white/10 pb-7 sm:flex-row sm:items-end">
-        <div><p className="mb-2 uppercase text-white/55" style={eyebrowStyle}>Employer workspace · {SAMPLE_EMPLOYER.country}</p>
+        <div><p className="mb-2 uppercase text-white/55" style={eyebrowStyle}>Employer / payroll demo · {SAMPLE_EMPLOYER.country}</p>
           <h1 className="text-3xl font-semibold tracking-tight sm:text-[40px]">{SAMPLE_EMPLOYER.name}</h1>
-          <p className="mt-2 text-sm text-white/55">{SAMPLE_EMPLOYER.type} · {SAMPLE_EMPLOYER.country} · demo workspace</p></div>
+          <p className="mt-2 text-sm text-white/55">{SAMPLE_EMPLOYER.type} · {SAMPLE_EMPLOYER.country} · simulated workspace</p></div>
         <Link href="/payments/wallet" className={buttonQuiet}>Open worker wallet <span className="ml-2 text-[#b7df78]">↗</span></Link>
       </header>
 
+      <aside role="note" className="mb-5 rounded-xl border border-[#a8dc55]/20 bg-[#a8dc55]/[.055] px-5 py-4">
+        <p className="text-sm font-medium text-white">Funding payroll in USDC does not convert a worker&apos;s balance to local currency.</p>
+        <p className="mt-1 text-sm leading-5 text-white/55">This employer view simulates payroll funding and allocation only. Workers decide whether to hold USDC or choose a conversion; no automatic payday conversion or live payment is connected.</p>
+      </aside>
+
       <section aria-label="Payroll account summary" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          ["Payroll account", moneyFromCents(state.employerCents), "Simulated account balance"],
+          ["Payroll account", moneyFromCents(state.employerCents), "Simulated USDC funding balance"],
           ["Reserved", moneyFromCents(state.reservedCents), "Set aside for payroll"],
           ["Available", moneyFromCents(availableCents), "Ready for a demo run"],
           ["Workers", `${totalWorkers}`, `${paidCount} with a demo balance`],
