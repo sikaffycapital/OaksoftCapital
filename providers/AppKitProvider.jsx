@@ -18,13 +18,17 @@ if (!projectId) {
   throw new Error("Project ID is not defined");
 }
 
-// App metadata (adjust to your app)
-const metadata = {
-  name: "oak",
-  description: "Deccentralized Asset Management",
-  url: "https://oak-soft-ten.vercel.app/", 
-  icons: ["https://avatars.githubusercontent.com/u/179229932"],
-};
+// Wallet metadata must match the exact origin the visitor is using.
+// Metadata is optional during SSR, where no browser origin is available.
+const metadata =
+  typeof window === "undefined"
+    ? undefined
+    : {
+        name: "Oaksoft Capital Management",
+        description: "Blockchain portfolio management and venture investing",
+        url: window.location.origin,
+        icons: ["https://avatars.githubusercontent.com/u/179229932"],
+      };
 
 // Non-EVM adapters (multichain)
 const solanaAdapter = new SolanaAdapter();

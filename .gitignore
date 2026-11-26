@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Replit workspace folders (keep Tailwind + git out of them)
+.local/
+.cache/
+.config/
+.upm/
